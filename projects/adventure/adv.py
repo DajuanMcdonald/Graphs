@@ -29,34 +29,38 @@ player = Player(world.starting_room)
 # traversal_path = ['n', 'n']
 traversal_path = []
 
-def bfs(self, start_node, adj_node):
 
-    level = {self.start_node: 0}
-    parent = {self.start_node: None}
-    i = 1
-    frontier = [self.start_node]
+def bfs(self, current_room, exits:
+    """ breath-first search algorithm  """
+    # create an empty queue and add a path to starting vertex
+    queue = [ [current_room.id] ]
 
-    while frontier:
-        next_node = []
-        for u in frontier:
-            for v in self.adj_node[u]:
-                if v not in level:
-                    level[v] = i
-                    parent[v] = u
-                    next_node.append(v)
+    # set up visited
 
-    frontier = next_node
-    i += 1
+    # fill traveral path
+    while len(queue) > 0:
+        traversal_path.append(visited_rooms)
 
 
 
+    pass
+
+
+ 
+
+
+# def bfs(start_node):
+#     """Travel in direction"""
+#     while player.current_room.id > 0:
+#         player.current_room.get_exits()
+#         traversal_path.append(player.current_room.id)
+#         player.travel('n')
+#         player.current_room.id
 
 
 
-# TRAVERSAL TEST
-visited_rooms = set()
-player.current_room = world.starting_room
-visited_rooms.add(player.current_room)
+
+
 
 for move in traversal_path:
     player.travel(move)
