@@ -10,9 +10,9 @@ world = World()
 
 
 # You may uncomment the smaller graphs for development and testing purposes.
-map_file = "maps/test_line.txt"
+# map_file = "maps/test_line.txt"
 # map_file = "maps/test_cross.txt"
-# map_file = "maps/test_loop.txt"
+map_file = "maps/test_loop.txt"
 # map_file = "maps/test_loop_fork.txt"
 # map_file = "maps/main_maze.txt"
 
@@ -44,56 +44,51 @@ possible_paths = dict()
 
 # visit: Boolean
 # visit of rooms
-# visited = set()
+visited_rooms = set()
 # while visited:
 #     pass
 
 # search: return paths bfs()/dfs()
-# def bfs(self, room):
-#     # while in a room
-#     while room:
-#         # if room has greater than 2 exits
-#             # iterate directions
-#         # check if  is in cache of explored rooms
-#         # if yes, iterate directions and add exit to 
-#     pass
+def bfs(room_graph, start_node, path=traversal_path):
+   """ Using Queue to implement BFS """
+   queue = [start_node]
+   while queue:
+       vertex = queue.pop(0)
+       if vertex not in path:
+           path.append(vertex)
+           queue = room_graph[vertex]+queue
+           
+           return path
 
-# 
-#  
+bfs(room_graph, 0)
+    #once we have at least one node enqueued and queue is not empty
+    # we can visit nodes and enqueue their children
+    # while len(queue) > 0:
+    #     new_node = queue[0]
+
+    #     for adjecent of new_node.neighbors:
+    #         if adjecent 
+    # if node not in discovered_nodes
+        # add node to discovered_nodes 
+
+def dfs(room_graph, start_node, path=traversal_path):
+    stack = [start_node]
+    while stack:
+        vertex = stack.pop(0)
+        if not vertex in path:
+            path.append(vertex)
+            stack = stack+room_graph[vertex]
+            return path
+
+dfs(room_graph, 0)
 
 # iteration: for n in directions: walk()
 
 # traverse: explore paths bft() dft()
-def bft(self, start):
-    
-
+def bft(): 
     pass
 
-def bfs(self, current_room, exits):
-    """ breath-first search algorithm  """
-    
-    # create an empty queue and add path to starting vertex
-    que = [ [current_room.id] ]
-    visited_rooms = set()
-
-    # set up visited
-
-    # fill traveral path
-    while len(que) > 0:
-        traversal_path = que.pop(0)
-
-        current_room = traversal_path[- 1]
-
-        #check for visited vertex
-        if current_room.id not in visited_rooms:
-            visited_rooms.add(player.current_room)
-
-            # check if current vertex has no more exits
-            if player.current_room.get_exits() == True:
-                player.travel(exits)
-
-
-
+def dft():
     pass
 
 
@@ -117,6 +112,9 @@ while True:
     cmds = input("-> ").lower().split(" ")
     if cmds[0] in ["n", "s", "e", "w"]:
         player.travel(cmds[0], True)
+        traversal_path.append(cmds[0])
+        print(player.current_room.id)
+        print(traversal_path)
     elif cmds[0] == "q":
         break
     else:
