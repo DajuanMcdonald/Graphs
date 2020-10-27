@@ -34,7 +34,22 @@ traversal_path = []
 # player.travel(direction)
 
 # starting in room 0 of graph 
-# graph[0]
+# graph is a dict
+
+# exits are a list of strings
+
+# we want to log the PATH into traversal_path list
+
+# algorithm should randomly pick from a direction list (to move)
+# this direction should be logged into traversal_path list
+# iterative loop to repeat
+
+#if room has no exits, we should backtrack to nearest room with exits
+
+# the bfs queue stores any explored exits
+# since bfs returns room id, convert id list to actual direction
+# i.e if room id 3 has exits [n, s], then traversal_path.append(exits_of_current_room)
+
 
 
 
