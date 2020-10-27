@@ -29,37 +29,72 @@ player = Player(world.starting_room)
 # traversal_path = ['n', 'n']
 traversal_path = []
 
+# directions: north south east west [string]
+directions = list(['n', 's', 'e', 'w'])
 
-def bfs(self, current_room, exits:
+# destinations: rooms [string]
+# when we find one, check if already searched and check if already visited
+# if already searched - check dictionary for paths explored/not-explored
+
+# dictionary: algorithm to map possible paths
+# rooms
+possible_paths = dict()
+
+# paths: [count, searched, exit]
+
+# visit: Boolean
+# visit of rooms
+# visited = set()
+# while visited:
+#     pass
+
+# search: return paths bfs()/dfs()
+# def bfs(self, room):
+#     # while in a room
+#     while room:
+#         # if room has greater than 2 exits
+#             # iterate directions
+#         # check if  is in cache of explored rooms
+#         # if yes, iterate directions and add exit to 
+#     pass
+
+# 
+#  
+
+# iteration: for n in directions: walk()
+
+# traverse: explore paths bft() dft()
+def bft(self, start):
+    
+
+    pass
+
+def bfs(self, current_room, exits):
     """ breath-first search algorithm  """
-    # create an empty queue and add a path to starting vertex
-    queue = [ [current_room.id] ]
+    
+    # create an empty queue and add path to starting vertex
+    que = [ [current_room.id] ]
+    visited_rooms = set()
 
     # set up visited
 
     # fill traveral path
-    while len(queue) > 0:
-        traversal_path.append(visited_rooms)
+    while len(que) > 0:
+        traversal_path = que.pop(0)
+
+        current_room = traversal_path[- 1]
+
+        #check for visited vertex
+        if current_room.id not in visited_rooms:
+            visited_rooms.add(player.current_room)
+
+            # check if current vertex has no more exits
+            if player.current_room.get_exits() == True:
+                player.travel(exits)
 
 
 
     pass
-
-
- 
-
-
-# def bfs(start_node):
-#     """Travel in direction"""
-#     while player.current_room.id > 0:
-#         player.current_room.get_exits()
-#         traversal_path.append(player.current_room.id)
-#         player.travel('n')
-#         player.current_room.id
-
-
-
-
 
 
 for move in traversal_path:
