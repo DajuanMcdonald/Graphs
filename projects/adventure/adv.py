@@ -29,6 +29,17 @@ player = Player(world.starting_room)
 # traversal_path = ['n', 'n']
 traversal_path = []
 
+# player.current_room.id
+# player.current_room.get_exits()
+# player.travel(direction)
+
+# starting in room 0 of graph 
+# graph[0]
+
+
+
+
+
 # directions: north south east west [string]
 directions = list(['n', 's', 'e', 'w'])
 
@@ -49,18 +60,42 @@ visited_rooms = set()
 #     pass
 
 # search: return paths bfs()/dfs()
-def bfs(room_graph, start_node, path=traversal_path):
-   """ Using Queue to implement BFS """
-   queue = [start_node]
-   while queue:
-       vertex = queue.pop(0)
-       if vertex not in path:
-           path.append(vertex)
-           queue = room_graph[vertex]+queue
-           
-           return path
+def depth_first_search(start_node, graph={}):
+    if start_node is None or start_node not in graph:
+        return "No start node found"
 
-bfs(room_graph, 0)
+    path = traversal_path
+    stack = [start_node]
+
+    while len(stack) != 0:
+        s = stack.pop()
+
+        if s not in path:
+            path.append(s)
+
+        if s not in graph:
+            continue
+
+
+        for neighbor in graph[s]:
+            print(neighbor)
+
+    return " ".join(path)
+
+# depth_first_search(0, map_file)
+# def bfs(room_graph, start_node, path=traversal_path):
+#    """ Using Queue to implement BFS """
+#    queue = [start_node]
+#    while queue:
+#        vertex = queue.pop(0)
+#        if vertex not in path:
+#            path.append(vertex)
+#            queue = room_graph[vertex]+queue
+#            print(path)
+           
+#            return path
+
+# bfs(room_graph, 0)
     #once we have at least one node enqueued and queue is not empty
     # we can visit nodes and enqueue their children
     # while len(queue) > 0:
@@ -71,16 +106,17 @@ bfs(room_graph, 0)
     # if node not in discovered_nodes
         # add node to discovered_nodes 
 
-def dfs(room_graph, start_node, path=traversal_path):
-    stack = [start_node]
-    while stack:
-        vertex = stack.pop(0)
-        if not vertex in path:
-            path.append(vertex)
-            stack = stack+room_graph[vertex]
-            return path
+# def dfs(room_graph, start_node, path=traversal_path):
+#     stack = [start_node]
+#     while stack:
+#         vertex = stack.pop(0)
+#         if not vertex in path:
+#             path.append(vertex)
+#             stack = stack+room_graph[vertex]
+#             print(path)
+#             return path
 
-dfs(room_graph, 0)
+# dfs(room_graph, 0)
 
 # iteration: for n in directions: walk()
 
@@ -114,6 +150,7 @@ while True:
         player.travel(cmds[0], True)
         traversal_path.append(cmds[0])
         print(player.current_room.id)
+        print(room_graph[player.current_room.id])
         print(traversal_path)
     elif cmds[0] == "q":
         break
